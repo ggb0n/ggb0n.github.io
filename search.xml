@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>obfs4网桥配置报错的解决</title>
+      <link href="/2020/04/01/obfs4%E7%BD%91%E6%A1%A5%E9%85%8D%E7%BD%AE%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3/"/>
+      <url>/2020/04/01/obfs4%E7%BD%91%E6%A1%A5%E9%85%8D%E7%BD%AE%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3/</url>
+      
+        <content type="html"><![CDATA[<p>昨天的问题上午刚解决，结果又有新问题… 不过这问题网上好像还有人问了，但是貌似没什么解决方案，还有人说是obfs4的一个bug，着实让我抓狂，感觉是全网第一个解决的人，起码应该是第一篇解决的文章。惬意~</p><h3 id="报错问题"><a href="#报错问题" class="headerlink" title="报错问题"></a>报错问题</h3><p>上午成功编译obfs4项目之后，随后就对<code>/etc/tor/torrc</code>文件做了如下的配置：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Log notice file &#x2F;var&#x2F;log&#x2F;tor&#x2F;notices.log</span><br><span class="line">RunAsDaemon 1</span><br><span class="line">ORPort 44443 #注意这个端口官方提供配置是443，不过443可能被占用导致tor启动失败，改一下就行</span><br><span class="line">Exitpolicy reject *:*</span><br><span class="line">BridgeRelay 1</span><br><span class="line">ServerTransportPlugin obfs4 exec &#x2F;usr&#x2F;local&#x2F;bin&#x2F;obfs4proxy</span><br><span class="line">ExtORPort auto</span><br><span class="line">PublishServerDescriptor 0</span><br></pre></td></tr></table></figure><p>然后重启tor服务：<code>service tor restart</code>，查看一下tor的运行状态是没问题，嗯，放心了。</p><p>然后<code>tail -F /var/log/tor/notices.log</code>，原本以为没问题，但是回显结果如下：<br><img src="http://ggb0n.cool/images/obfs4-1.png" alt=""></p><p>没错，报了如下错误：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[warn] Could not launch managed proxy executable at &#39;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;obfs4proxy&#39; (&#39;Permission denied&#39;).</span><br></pre></td></tr></table></figure><p>而成功的回显呢？<br><img src="http://ggb0n.cool/images/obfs4-2.png" alt=""></p><p>没错，是上面这种情况</p><p>然后就疯狂科学上网找解决方式，说是什么要以托管的方式运行，但是就是一直解决不了…</p><h3 id="发现猫腻"><a href="#发现猫腻" class="headerlink" title="发现猫腻"></a>发现猫腻</h3><p>是在多次尝试中，发现了疑似问题的<br>多次restart服务，发现tor服务都正常，当时当终端直接键入<code>tor</code>去运行的时候，就会报错，嗯？？？<br><img src="http://ggb0n.cool/images/obfs4-3.png" alt=""></p><p>不知道是端口占用还是进程没被杀死，但是这应该就是问题所在了，因为终端键入<code>tor</code>其实是执行tor这个程序，而<code>restart</code>是对tor服务的操作，服务成功运行不代表着tor启动了呀，tor不启动，那就不是以托管方式去运行obfs4proxy了呀，所有这就是问题！</p><h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3><p>由于最初是yum安装的tor，尝试重装无果，便选择了自己下载源码编译。</p><p>编译、安装完成之后，对<code>/usr/local/etc/tor</code>下的<code>torrc</code>进行前面提到的配置，然后执行可执行程序，在<code>/usr/local/bin</code>中。</p><p>以命令<code>./tor;tail -F /var/log/tor/notices.log</code>同时启动tor和网桥，回显如下：<br><img src="http://ggb0n.cool/images/obfs4-4.png" alt=""></p><p>good! 成功解决。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 瞎捉摸的一些学习 </category>
+          
+          <category> obfs4网桥搭建 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> obfs4网桥 </tag>
+            
+            <tag> Tor </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>golang编译项目的一个巨坑</title>
       <link href="/2020/04/01/golang%E7%BC%96%E8%AF%91%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B7%A8%E5%9D%91/"/>
       <url>/2020/04/01/golang%E7%BC%96%E8%AF%91%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B7%A8%E5%9D%91/</url>
@@ -14,6 +45,8 @@
       <categories>
           
           <category> 瞎捉摸的一些学习 </category>
+          
+          <category> obfs4网桥搭建 </category>
           
       </categories>
       
@@ -26,7 +59,9 @@
             
             <tag> git </tag>
             
-            <tag> obfs4网桥配置 </tag>
+            <tag> obfs4网桥 </tag>
+            
+            <tag> Tor </tag>
             
         </tags>
       
