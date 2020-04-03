@@ -99,35 +99,6 @@
     
     
     <entry>
-      <title>misc解题思路</title>
-      <link href="/2020/03/29/misc%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/"/>
-      <url>/2020/03/29/misc%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/</url>
-      
-        <content type="html"><![CDATA[<p>本题为原创题目，不想套娃的最后还是套娃了，主要原因是想多出几个知识点，增加点题目的价值，也想给接触misc少的学弟普及点知识（学弟中的大佬们轻点喷哈），套娃之处，多多包涵、多多包涵。下面说一下解题思路：</p><p>解题思路如下：</p><h3 id="1、PNG隐写"><a href="#1、PNG隐写" class="headerlink" title="1、PNG隐写"></a>1、PNG隐写</h3><p>解压之后拿到一张名为<code>dalao.png</code>的图片，看图片尾部就可以得知隐写了zip</p><p><img src="http://ggb0n.cool/images/neibu1.png" alt=""></p><p>binwalk分离之后得到一张png图片和一个压缩包。但是png图片缩略图可以看直接打开又看不了，压缩包解压又需要密码，很容易猜到密码就在这张png里。</p><h3 id="2、PNG恢复-amp-压缩包解压"><a href="#2、PNG恢复-amp-压缩包解压" class="headerlink" title="2、PNG恢复&amp;压缩包解压"></a>2、PNG恢复&amp;压缩包解压</h3><p>考虑到图片缩略图没问题但是打开却查看不了，首先猜测是不是宽高被做了手脚，这也是本题的考点，本题比较简单，查看hex能够轻易发现高和宽差了20字节，改回去即可恢复，并且拿到压缩包密码</p><p><img src="http://ggb0n.cool/images/neibu2.png" alt=""></p><p>这个知识点如果再难一些的话可以考宽高的爆破，这个网上比较多，不了解的可以参考。</p><p>拿到密码之后，解压压缩包是一张<code>Boy_Play_GTA.png</code>的GTA图片，其实这里是想给一个提示，对<code>BPG</code>了解的应该能看出来是考bpg的。</p><h3 id="3、提取并查看BPG"><a href="#3、提取并查看BPG" class="headerlink" title="3、提取并查看BPG"></a>3、提取并查看BPG</h3><p>这题考的也比较简单，查看hex，在png的结尾发现还存在数据，ascii搜索<code>BPG</code>即可找到bpg文件的开头：</p><p><img src="http://ggb0n.cool/images/neibu3.png" alt=""></p><p>把后面的内容全部提取，新建hex文件把数据都放进去，然后改后缀为<code>bpg</code>即可，不过由于是新的图片格式，Windows没法直接查看，需要借助第三方工具<a href="https://sourceforge.net/projects/pybpgviewer/" target="_blank" rel="noopener">BPG Viewer</a>或者到网上<a href="https://webencoder.libbpg.org/" target="_blank" rel="noopener">在线查看</a>。</p><p>拿到加密的flag的图片：</p><p><img src="http://ggb0n.cool/images/neibu4.png" alt=""></p><h3 id="4、解密flag"><a href="#4、解密flag" class="headerlink" title="4、解密flag"></a>4、解密flag</h3><p>从图片内容可以看到，flag经过了加密，密钥匙<code>china</code>，misc常见的加密、编码方式也就那几种，这题提示了秘钥，不难想到是维吉尼亚加密，<a href="https://www.qqxiuzi.cn/bianma/weijiniyamima.php" target="_blank" rel="noopener">在线解密</a>即可。</p><p>这个地方期初想考曼彻斯特编码的，不过主要想考的是BPG那里，后面就降低难度了，重在普及知识嘛。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 内部赛 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> misc </tag>
-            
-            <tag> BPG </tag>
-            
-            <tag> 维吉尼亚密码 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>SWPU2019复现</title>
       <link href="/2020/03/20/SWPU2019%E5%A4%8D%E7%8E%B0/"/>
       <url>/2020/03/20/SWPU2019%E5%A4%8D%E7%8E%B0/</url>
