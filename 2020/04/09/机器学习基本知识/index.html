@@ -55,7 +55,7 @@
 <p>对于隐藏层数的设置，如果没有明确规则，则可以根据实验测试和误差，以及准确度来实验并作出调整。准确度的测试可以利用测试集来进行测试。不过还有一种常用的测试方法：<code>交叉验证方法</code>。</p>
 <h4 id="交叉验证方法（Cross-Validation）"><a href="#交叉验证方法（Cross-Validation）" class="headerlink" title="交叉验证方法（Cross-Validation）"></a>交叉验证方法（Cross-Validation）</h4><p>将数据集分为<code>n</code>份，第一次将第一份作为测试集其余作为训练集进行训练和测试，第二层选择第二份作为测试集其余作为训练集进行训练和测试，依次类推进行。</p>
 <p><img src="http://ggb0n.cool/images/NN02.png" alt=""></p>
-<h4 id="Backpropagation算法"><a href="#Backpropagation算法" class="headerlink" title="Backpropagation算法"></a>Backpropagation算法</h4><p>该算法通过<code>迭代性</code>的训练集输入来处理训练集中的实例，对比通过神经网络处理后输出层的预测值与训练集真实值之间的差，来<code>反向地</code>以最小化误差调节每个连接之间的权重，以此方式逐渐地进行训练。</p>
+<h4 id="Backpropagation算法"><a href="#Backpropagation算法" class="headerlink" title="Backpropagation算法"></a>Backpropagation算法</h4><p>该算法可以说是其他神经网络算法的基本，通过<code>迭代性</code>的训练集输入来处理训练集中的实例，对比通过神经网络处理后输出层的预测值与训练集真实值之间的差，来<code>反向地</code>以最小化误差调节每个连接之间的权重，以此方式逐渐地进行训练。</p>
 <p>算法的要素如下：</p>
 <blockquote>
 <p>输入：数据集<code>D</code>、学习率<code>L</code>、一个多层向前神经网络<br>输出：一个训练好的神经网络<br>起始状态时需要初始化<code>权重</code>、<code>偏向</code>（<code>Bias</code>，每个单元都有一个偏向，相当于上层传到当前结点的一个偏移）：随机初始化值在<code>-1</code>到<code>1</code>之间，或者<code>-0.5</code>到<code>0.5</code>之间。</p>
