@@ -153,6 +153,25 @@
     
     
     <entry>
+      <title>记录一次网络配置</title>
+      <link href="/2020/03/28/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/"/>
+      <url>/2020/03/28/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<p>首先需要说明一下，实用校园网的计算机上不能安装<code>360</code>、<code>电脑管家</code>、<code>虚拟机</code>、<code>手机模拟器</code>，另外需要保证硬盘未做改动，那么按照如下方式可以入网。<strong>道路千万条，安全第一条！</strong></p><h3 id="1、配置内网IP"><a href="#1、配置内网IP" class="headerlink" title="1、配置内网IP"></a>1、配置内网IP</h3><p>首先打开<code>网络和Internet设置</code></p><p><img src="http://ggb0n.cool/images/wang1.png" alt=""></p><p>右键<code>以太网</code>，然后点击<code>属性</code></p><p><img src="http://ggb0n.cool/images/wang2.png" alt=""></p><p>双击图中的<code>Internet协议版本4</code>进行IP的配置：</p><p><img src="http://ggb0n.cool/images/wang3.png" alt=""></p><p>可能遇到了访问不了<code>10.100.200.40</code>的问题，DNS配一下<code>202.102.224.68</code>。</p><p>如上配置之后点击<code>确定</code>、<code>确定</code>，此时即完成内网静态IP的配置。</p><h3 id="2、安装Inode"><a href="#2、安装Inode" class="headerlink" title="2、安装Inode"></a>2、安装Inode</h3><p>插上网线并配置好IP之后，浏览器访问<code>10.100.200.40</code>，进入官网首页：<br><img src="http://ggb0n.cool/images/wang4.png" alt=""></p><p>可以看到<code>下载专区</code>，进去即可下载最新版<code>Inode</code>，不过最新版Inode安装之后不能访问个人热点，这里提供一个旧版Inode：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1kgySm91WQTzGyJcI2xZ54g </span><br><span class="line">提取码：scp6</span><br></pre></td></tr></table></figure><p>下载之后安装，一路默认即可，最后重启计算机。（注意安装过程中不能打开360、电脑管家之类软件。）</p><p><strong>如何配置可以访问个人热点？</strong></p><p>打开<code>网络和Internet设置</code>，然后右键<code>WLAN</code>、选择<code>属性</code>，然后勾掉其中的<code>iNode LightWeight Filter</code>，然后<code>确定</code>、<code>确定</code>即可。如下图：</p><p><img src="http://ggb0n.cool/images/wang5.png" alt=""></p><h3 id="3、查询资产编号"><a href="#3、查询资产编号" class="headerlink" title="3、查询资产编号"></a>3、查询资产编号</h3><p>插上网线并配置好IP之后，浏览器访问<code>10.100.200.40</code>，进入官网首页：</p><p><img src="http://ggb0n.cool/images/wang4.png" alt=""></p><p>可以看到<code>自助服务</code>，点击之后用自己的账号登录（默认账号密码都是个人学号），登录之后点击<code>资产维护</code>即可查看到个人资产编号。</p><p><img src="http://ggb0n.cool/images/wang6.png" alt=""></p><h3 id="4、登录Inode联网"><a href="#4、登录Inode联网" class="headerlink" title="4、登录Inode联网"></a>4、登录Inode联网</h3><p>在保证360、虚拟机等服务未开启的状态下打开Inode客户端程序，填入个人账号密码（默认为学号），进行登录:</p><p><img src="http://ggb0n.cool/images/wang9.png" alt=""></p><p>身份认证成功之后，稍等片刻，将会弹出<code>输入资产编号</code>的弹框：</p><p><img src="http://ggb0n.cool/images/wang7.png" alt=""></p><p>将上一步查询到的资产编号填入即可，认证成功之后回显个人计算机的填报信息：<br><img src="http://ggb0n.cool/images/wang8.png" alt=""></p><p>然后等检查状态为<code>安全</code>之后即可访问网络。</p><p>遇到问题可以私聊我。</p><p><strong>再次强调，安全第一！</strong></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 网络配置 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SWPU2019复现</title>
       <link href="/2020/03/20/SWPU2019%E5%A4%8D%E7%8E%B0/"/>
       <url>/2020/03/20/SWPU2019%E5%A4%8D%E7%8E%B0/</url>
