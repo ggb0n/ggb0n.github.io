@@ -245,9 +245,9 @@
     
       <category term="SQL注入" scheme="http://ggb0n.cool/tags/SQL%E6%B3%A8%E5%85%A5/"/>
     
-      <category term="二次注入" scheme="http://ggb0n.cool/tags/%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5/"/>
-    
       <category term="JWT伪造" scheme="http://ggb0n.cool/tags/JWT%E4%BC%AA%E9%80%A0/"/>
+    
+      <category term="二次注入" scheme="http://ggb0n.cool/tags/%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5/"/>
     
       <category term="无列名查询" scheme="http://ggb0n.cool/tags/%E6%97%A0%E5%88%97%E5%90%8D%E6%9F%A5%E8%AF%A2/"/>
     
