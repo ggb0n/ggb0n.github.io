@@ -465,9 +465,9 @@
     
       <category term="Linux" scheme="http://ggb0n.cool/tags/Linux/"/>
     
-      <category term="obfs4网桥" scheme="http://ggb0n.cool/tags/obfs4%E7%BD%91%E6%A1%A5/"/>
-    
       <category term="Tor" scheme="http://ggb0n.cool/tags/Tor/"/>
+    
+      <category term="obfs4网桥" scheme="http://ggb0n.cool/tags/obfs4%E7%BD%91%E6%A1%A5/"/>
     
   </entry>
   
@@ -572,13 +572,13 @@
     
       <category term="Linux" scheme="http://ggb0n.cool/tags/Linux/"/>
     
-      <category term="obfs4网桥" scheme="http://ggb0n.cool/tags/obfs4%E7%BD%91%E6%A1%A5/"/>
-    
-      <category term="Tor" scheme="http://ggb0n.cool/tags/Tor/"/>
-    
       <category term="golang" scheme="http://ggb0n.cool/tags/golang/"/>
     
       <category term="git" scheme="http://ggb0n.cool/tags/git/"/>
+    
+      <category term="Tor" scheme="http://ggb0n.cool/tags/Tor/"/>
+    
+      <category term="obfs4网桥" scheme="http://ggb0n.cool/tags/obfs4%E7%BD%91%E6%A1%A5/"/>
     
   </entry>
   
